@@ -13,10 +13,12 @@ export const FooterContainer = styled.div`
   align-items: center;
   padding-top: 50px;
   margin-top: 55px;
+  margin-bottom: 127px;
 
   @media (max-width: 767px) {
     padding-top: 30px;
     margin-top: 30px; 
+    margin-bottom: 0;
   }
 `;
 
@@ -133,7 +135,6 @@ export const CopyrightWrapper = styled.div`
   justify-content: center;
   @media (max-width: 767px) {
     height: 90px;
-  
   }
 `;
 
@@ -149,6 +150,85 @@ export const CopyrightText = styled.p<FontProps>`
   @media (max-width: 767px) {
     font-size: 12px; 
     text-align: center;
-  
+  }
+`;
+
+export const FixedFooterContainer = styled.div`
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 127px;
+  background-color: black;
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 767px) {
+    height: auto;
+    position: relative;
+    padding: 10px;
+  }
+`;
+
+export const FixedFooterText = styled.p`
+  font-family: ${theme.fonts.lato};
+  font-size: 22px;
+  font-weight: 400;
+  color: ${theme.colors.white};
+
+  @media (max-width: 767px) {
+    font-size: 18px;
+    text-align: center;
+  }
+`;
+
+export const FixedFooterForm = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
+`;
+
+export const FixedFooterInput = styled.input`
+  padding: 10px 20px;
+  font-family: ${theme.fonts.lato};
+  font-weight: 400;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  width: 250px;
+  margin: 0 20px;
+  height: 40px;
+
+  @media (max-width: 767px) {
+    margin: 10px 0;
+    width: 80%;
+  }
+`;
+
+export const FixedFooterButton = styled.button`
+  background-color: #0173b0;
+  color: ${theme.colors.white};
+  width: 174px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: ${theme.fonts.lato};
+  font-weight: 400;
+  height: 47px;
+  margin: 0 20px;
+  cursor: pointer;
+
+  @media (max-width: 767px) {
+    margin-top: 10px;
   }
 `;
