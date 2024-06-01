@@ -91,7 +91,7 @@ export const HEADER_ITEMS = [
 
 export const PROMOTIONAL_BANNER_ITEMS = [
   {
-    image: "/assets/images/commercialProperties-v2.png",
+    image: "/assets/images/CommercialProperties-v2.png",
     name: "Commercial Properties",
   },
   {
@@ -192,7 +192,7 @@ export const WHAT_IS_EXTRABRICS = [
     name: "Collaboration",
     icon: Collaborationicon,
   },
-  {
+  {        
     name: "Sustainability",
     icon: Sustainabilityicon,
   },
