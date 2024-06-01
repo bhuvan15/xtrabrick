@@ -84,7 +84,7 @@ export const HEADER_ITEMS = [
     link: "/contactUs",
   },
   {
-    name: "Carrers",
+    name: "Careers",
     link: "/carrers",
   },
 ];
@@ -784,7 +784,7 @@ export const CONTACT_US = [
     icon: MailIcon,
     heading: "Email",
     link: "",
-    info: "sales@xytabrick.com",
+    info: "sales@xtrabrick.com",
   },
   {
     icon: LocationIcon,
@@ -1063,7 +1063,7 @@ export const MENU_DROPDOWN_LINKS = [
     link: "/contactUs",
   },
   {
-    name: "Carrers",
+    name: "Careers",
     link: "/carrers",
   },
 ]
