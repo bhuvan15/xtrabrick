@@ -41,7 +41,7 @@ const Header: React.FC<{ activeTab?: string }> = ({ activeTab }) => {
         !searchRef.current.contains(event.target as Node)
       ) {
         setIsSearchVisible(false);
-        setIsMenuOpen(false)
+        setIsMenuOpen(false);
       }
     }
 
@@ -141,44 +141,39 @@ const Header: React.FC<{ activeTab?: string }> = ({ activeTab }) => {
             }
           }}
         >
-          <PhoneIcon className="phoneIcon"/>
           <PhoneNumberText className="phoneText">9850004775</PhoneNumberText>
         </PhoneNumberWrapper>
-          <MenuIconWrapper
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            <MenuIcon />
-            {isMenuOpen && (
-                <MenuhDropdownContainer isSearchVisible={isMenuOpen}>
-                {MENU_DROPDOWN_LINKS.map((item, index) => (
-                 <div key={index} >
-                          <Link
-                            href={item.link}
-                            key={item.name}
-                            passHref
-                            style={{ cursor: "pointer" }}
-   
-                          >
-                            <MenuDropdownItem>{item.name}</MenuDropdownItem>
-                          </Link>
-                          {item?.subLinks?.map((link) => {
-                            return (
-                              <Link
-                                href={link.link}
-                                key={link.name}
-                                passHref
-                                style={{ cursor: "pointer" }}
-                              >
-                                <MenuDropdownItem subLink>{link.name}</MenuDropdownItem>
-                              </Link>
-                            );
-                          })}
-                        </div>
-                ))}
-              </MenuhDropdownContainer>
-              
-            )}
-          </MenuIconWrapper>
+        <MenuIconWrapper onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <MenuIcon />
+          {isMenuOpen && (
+            <MenuhDropdownContainer isSearchVisible={isMenuOpen}>
+              {MENU_DROPDOWN_LINKS.map((item, index) => (
+                <div key={index}>
+                  <Link
+                    href={item.link}
+                    key={item.name}
+                    passHref
+                    style={{ cursor: "pointer" }}
+                  >
+                    <MenuDropdownItem>{item.name}</MenuDropdownItem>
+                  </Link>
+                  {item?.subLinks?.map((link) => {
+                    return (
+                      <Link
+                        href={link.link}
+                        key={link.name}
+                        passHref
+                        style={{ cursor: "pointer" }}
+                      >
+                        <MenuDropdownItem subLink>{link.name}</MenuDropdownItem>
+                      </Link>
+                    );
+                  })}
+                </div>
+              ))}
+            </MenuhDropdownContainer>
+          )}
+        </MenuIconWrapper>
       </HeaderItemsContainer>
     </HeaderContainer>
   );
