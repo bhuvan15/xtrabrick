@@ -48,8 +48,8 @@ const ContactUs = () => {
           {/* form inputs */}
           <Form>
             <div>
-              <Input type="text" placeholder={"First Name"} />
-              <Input type="text" placeholder={"Last Name"} />
+              <Input type="text" placeholder={"Full Name"} />
+              <Input type="text" placeholder={"Phone Number"} />
             </div>
             <Input type="text" placeholder={"Email"} />
             <Select>

@@ -146,7 +146,7 @@ export const PROPERTY_CATEGORIES = [
     location: "Pune",
     type: "1BHK / 2BHK / 3BHK / Duplex",
     ctaTitle: "Learn More",
-    ctaLink: "",
+    ctaLink: "/contactUs",
   },
   {
     image: "/assets/images/comProperties.png",
