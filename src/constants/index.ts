@@ -93,7 +93,7 @@ export const HEADER_ITEMS = [
  ],
  },
  {
- name: "Carrers",
+ name: "Careers",
  link: "/carrers",
  
  },
@@ -387,7 +387,7 @@ export const FOOTER_LINKS = [
  links: [
  {
  name: "Apply to Xtrabrick",
- link: "/carrers",
+ link: "/careers",
  },
  ],
  },
@@ -1110,7 +1110,7 @@ export const MENU_DROPDOWN_LINKS = [
  ],
  },
  {
- name: "Carrers",
+ name: "Careers",
  link: "/carrers",
  subLinks: [
  {
