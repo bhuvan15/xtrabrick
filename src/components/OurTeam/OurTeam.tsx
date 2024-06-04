@@ -1,5 +1,4 @@
 import { OUR_TEAM_DATA } from "@/constants";
-import Image from "next/image";
 import React from "react";
 import CustomHeading from "../CustomHeading/CustomHeading";
 import { OurTeamContainer, TeamMemberWrapper, TeamMembersWrapper, TeamMemberImage, TeamMemberName, TeamMemberPosition, TeamMemberCompany } from "./OurTeam.styles";

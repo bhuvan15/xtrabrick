@@ -7,9 +7,9 @@ export const OurTeamContainer = styled.div`
   width: 100%;
   align-items: center;
   justify-content: center;
-  /* padding: 0px 90px; */
   @media (max-width: 767px) {
     padding: 0px 30px;
+    margin-bottom: -40px;
   }
 
 `;
@@ -23,7 +23,8 @@ export const TeamMembersWrapper = styled.div`
 
   @media (max-width: 767px) {
     justify-content: center;
-    width: 95%;
+    width: 100%;
+    gap: 0px;
   }
 `;
 
@@ -40,10 +41,10 @@ export const TeamMemberWrapper = styled.div`
 export const TeamMemberImage = styled.img`
   width: 352px;
   height: 390px;
-
+  margin: 0 auto;
   @media (max-width: 767px) {
-    width: 157px; 
-    height: 142px;
+    width: 145px; 
+    height: 145px;
   }
 `;
 
@@ -71,6 +72,7 @@ export const TeamMemberPosition = styled.p`
   @media (max-width: 767px) {
     text-align: center;
     font-size: 15px;
+    margin: 8px auto;
   }
 `;
 

@@ -14,7 +14,7 @@ export const AboutUsContainer = styled.div`
 
   @media (max-width: 767px) {
     height: auto;
-    padding-top: 20px;
+    padding-top: 27px;
     margin-top: 50px;
     margin-bottom: -100px; 
   }
@@ -47,12 +47,13 @@ export const LogoContainer = styled.div`
     height: 94px;
     width: 90px;
     border-radius: 20px;
-    margin-bottom: 10px; /* Adjusted margin for mobile */
+    margin-bottom: 10px;
+    margin-left: 10px;
   }
 
   & .logo {
     @media (max-width: 767px) {
-      width: 67px;
+      width: 60px;
       height: 28px;
     }
   }
@@ -64,7 +65,7 @@ export const RightWrapper = styled.div`
   margin-left: 140px;
 
   @media (max-width: 767px) {
-    margin-left: 20px;
+    margin-left: 12px;
   }
 `;
 
@@ -76,8 +77,8 @@ export const AboutUsHeading = styled.h2`
   font-family: ${theme.fonts.lato};
 
   @media (max-width: 767px) {
-    font-size: 20px;
-    margin-bottom: 10px; 
+    font-size: 18px;
+    margin-bottom: 6px; 
   }
 `;
 
@@ -89,8 +90,8 @@ export const XtraBrickRealtors = styled.p`
   font-family: ${theme.fonts.lato};
 
   @media (max-width: 767px) {
-    font-size: 13px;
-    margin-bottom: 10px;
+    font-size: 10px;
+    margin-bottom: 6px;
     font-family: ${theme.fonts.lato};
   }
 `;
@@ -103,7 +104,7 @@ export const ExperienceText = styled.p<{ color: string; isBold?: boolean }>`
   font-family: ${theme.fonts.lato};
 
   @media (max-width: 767px) {
-    font-size: 12px;
+    font-size: 10px;
     margin-top: ${({ isBold }) => (isBold ? "3px" : "0")};
   }
 `;
@@ -117,7 +118,7 @@ export const AddressText = styled.p`
   margin-top: 125px;
 
   @media (max-width: 767px) {
-    margin-top: 10px;
-    font-size: 12px;
+    margin-top: 8px;
+    font-size: 10px;
   }
 `;

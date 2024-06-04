@@ -27,9 +27,9 @@ const AboutUs: React.FC = () => {
       </LogoContainer>
       <RightWrapper>
         <div>
-          <AboutUsHeading >About Us</AboutUsHeading>
+          <AboutUsHeading>About Us</AboutUsHeading>
           <XtraBrickRealtors >XTRABRICK REALTORS</XtraBrickRealtors>
-          <ExperienceText color="#20B2FF">20 +</ExperienceText>
+          <ExperienceText color="#20B2FF" isBold>20 +</ExperienceText>
           <ExperienceText color="#ffffff" isBold>Years of Experience</ExperienceText>
         </div>
         <AddressText>
