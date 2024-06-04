@@ -1,18 +1,18 @@
 import React from "react";
 import { theme } from "@/constants/basetheme";
-const VaastuDetailsContainer: React.FC<{ data: any[] }> = ({ data }) => {
+const VaastuDetailsContainer: React.FC<{ data: any[], columns?: number }> = ({ data, columns = 2 }) => {
   return (
     <div
       style={{
-        padding: "30px 45px",
+        padding: columns === 3 ? "30px 45px 0px 45px" : '30px 45px',
         display: "grid",
-        gridTemplateColumns: "repeat(2, 1fr)",
+        gridTemplateColumns: `repeat(${columns}, 1fr)`,
         gridTemplateRows: "repeat(2, auto)",
         gap: "50px",
         borderRadius: "20px",
         border: "1px solid black",
         width: "92%",
-        margin: "50px auto",
+        margin: "25px auto",
       }}
     >
       {data?.map((item, index) => {
@@ -22,7 +22,7 @@ const VaastuDetailsContainer: React.FC<{ data: any[] }> = ({ data }) => {
             style={{
               display: "flex",
               flexDirection: "column",
-              marginBottom: 20,
+              marginBottom: columns=== 3 ? 0  : 20,
             }}
           >
             <div
@@ -41,7 +41,7 @@ const VaastuDetailsContainer: React.FC<{ data: any[] }> = ({ data }) => {
                   fontSize: 20,
                 }}
               >
-                {" "}
+
                 {item?.title}
               </p>
             </div>
