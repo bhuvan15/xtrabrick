@@ -141,6 +141,7 @@ const Header: React.FC<{ activeTab?: string }> = ({ activeTab }) => {
             }
           }}
         >
+          <PhoneIcon height={21} width={21} />
           <PhoneNumberText className="phoneText">9850004775</PhoneNumberText>
         </PhoneNumberWrapper>
         <MenuIconWrapper onClick={() => setIsMenuOpen(!isMenuOpen)}>
