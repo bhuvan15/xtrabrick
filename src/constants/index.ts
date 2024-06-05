@@ -13,13 +13,12 @@ import DocumentationIcon from "../../public/assets/svg/DocumentationIcon";
 import EthicsIcon from "../../public/assets/svg/EthicsIcon";
 import FacebookIcon from "../../public/assets/svg/FacebookIcon";
 import FiveElementsIcon from "../../public/assets/svg/FiveElementsIcon";
+import FormIcon from "../../public/assets/svg/FormIcon";
+import FundingIcon from "../../public/assets/svg/FundingIcon";
 import GymIcon from "../../public/assets/svg/GymIcon";
 import HomeIcon from "../../public/assets/svg/HomeIcon";
 import IdealLocationIcon from "../../public/assets/svg/IdealLocationIcon";
 import InstagramIcon from "../../public/assets/svg/InstagramIcon";
-// import LightBathroomIcon from "../../public/assets/svg/LightBathroomIcon";
-// import LightBedroomIcon from "../../public/assets/svg/LightBedroomIcon";
-// import LightDimenstionIcon from "../../public/assets/svg/LightDimenstionIcon";
 import LinkedinIcon from "../../public/assets/svg/LinkedinIcon";
 import LivingAreaicon from "../../public/assets/svg/LivingAreaicon";
 import LocationIcon from "../../public/assets/svg/LocationIcon";
@@ -36,6 +35,7 @@ import TrainIcon from "../../public/assets/svg/TrainIcon";
 import VisionIcon from "../../public/assets/svg/VisionIcon";
 import WhatsappIcon from "../../public/assets/svg/WhatsappIcon";
 import XIcon from "../../public/assets/svg/XIcon";
+import ZeroFeesIcon from "../../public/assets/svg/ZeroFeesIcon";
 // LINKS_FOOTER
 export const HEADER_ITEMS = [
  {
@@ -95,7 +95,6 @@ export const HEADER_ITEMS = [
  {
  name: "Careers",
  link: "/carrers",
- 
  },
 ];
 
@@ -151,7 +150,12 @@ export const CLIENTS_INFO = [
 
 export const PROPERTY_CATEGORIES = [
  {
- image: "/assets/images/residentialHouse.png",
+ images: [
+ "/assets/images/residentialHouse.png",
+ "/assets/images/pc-2.png",
+ "/assets/images/pc-3.png",
+ "/assets/images/pc-4.png",
+ ],
  title: "Residential Properties",
  location: "Pune",
  type: "1BHK / 2BHK / 3BHK / Duplex",
@@ -159,7 +163,12 @@ export const PROPERTY_CATEGORIES = [
  ctaLink: "",
  },
  {
- image: "/assets/images/comProperties.png",
+ images: [
+ "/assets/images/comProperties.png",
+ "/assets/images/cp-2.png",
+ "/assets/images/cp-3.png",
+ "/assets/images/cp-4.png",
+ ],
  title: "Commercial Properties",
  location: "Pune",
  type: "Shops / Cafes / Clinics",
@@ -167,7 +176,12 @@ export const PROPERTY_CATEGORIES = [
  ctaLink: "",
  },
  {
- image: "/assets/images/agriPlots.png",
+ images: [
+ "/assets/images/agriPlots.png",
+ "/assets/images/ag-2.png",
+ "/assets/images/ag-3.png",
+ "/assets/images/ag-4.png",
+ ],
  title: "Developer Plots",
  location: "Pune",
  type: "Non - Agricultural Plots",
@@ -734,10 +748,33 @@ export const DEVELOPER_PLOTS = [
 ];
 
 export const COMMERCIAL_PROPERTIES_WIDGET = [
- "Designed specifically for Office use housing businesses, corporations, and professional services.",
- "Shops and Boutiques to large Departmental stores and Shopping malls.",
- "Located in commercial areas with high foot traffic.",
+ {
+ icon: DeveloperplotsIcon,
+ title: "Offices",
+ description: "Businesses, Corporations and Professional Services",
+ info: [],
+ },
+ {
+ icon: DeveloperplotsIcon,
+ title: "Large Departmental Stores",
+ description: "Shopping Malls, Showrooms",
+ info: [],
+ },
+
+ {
+ icon: DeveloperplotsIcon,
+ title: "Shops",
+ description: `All sizes of shops, stores and boutiques`,
+ info: [],
+ },
+ {
+ icon: DeveloperplotsIcon,
+ title: "Commercial Areas",
+ description: `High foot traffic, accessible locations with public transport`,
+ info: [],
+ },
 ];
+
 
 export const RESIDENTIAL_PROPERTIES = [
  {
@@ -1037,15 +1074,15 @@ export const SearchDropdown = [
  },
  {
  name: "Loan Services",
- link: "",
+ link: "/loan#loanServices",
  },
  {
  name: "Vaastu Shastra Consultation",
- link: "",
+ link: "/vaastu",
  },
  {
  name: "Location of Property",
- link: "",
+ link: "/#locations",
  },
 ];
 
@@ -1138,235 +1175,245 @@ export const MENU_DROPDOWN_LINKS = [
 export const LOAN_SERVICES = [
  {
  icon: DocumentationIcon,
- title: 'Documentation Help',
- description: " Get hassle free loan approvals with our experts helping with detailed documentation required along with their requirements and explore more options.",
+ title: "Documentation Help",
+ description:
+ " Get hassle free loan approvals with our experts helping with detailed documentation required along with their requirements and explore more options.",
  },
  {
  icon: ConsultIcon,
- title: 'Finance Consult',
- description: " We provide free finance consultation in terms of budget, loan help and offer from different banks to ease the whole process of buying your dream home.",
+ title: "Finance Consult",
+ description:
+ " We provide free finance consultation in terms of budget, loan help and offer from different banks to ease the whole process of buying your dream home.",
  },
  {
  icon: PiggyBankIcon,
- title: 'Home Buying Budget',
- description: "While it's essential to establish a budget that aligns with your financial situation and goals, remain realistic about the current housing market conditions and the affordability of properties in your desired location.",
- }
-]
+ title: "Home Buying Budget",
+ description:
+ "While it's essential to establish a budget that aligns with your financial situation and goals, remain realistic about the current housing market conditions and the affordability of properties in your desired location.",
+ },
+];
 
 export const BANKING_PARTNERS_LABEL = [
  {
- name: 'Lowest Interest',
- value: 'lowestInterest',
-
+ name: "Lowest Interest",
+ value: "lowestInterest",
  },
  {
- name: 'Max Tenure',
- value: 'maxTenure',
- 
+ name: "Max Tenure",
+ value: "maxTenure",
  },
  {
- name: 'Max Funding',
- value: 'maxFunding',
- 
- }
-]
+ name: "Max Funding",
+ value: "maxFunding",
+ },
+];
 
-export const BANKS_DATA:{[key: string]: {
+export const BANKS_DATA: {
+ [key: string]: {
  image: string;
  name: string;
  interestRate: string;
  tenure: string;
-}[]} = {
+ }[];
+} = {
  lowestInterest: [
  {
- image: '/assets/images/banks/bob.png',
- name: 'Bank of Baroda Regular',
- interestRate: '8.45%',
- tenure: '30',
+ image: "/assets/images/banks/bob.png",
+ name: "Bank of Baroda Regular",
+ interestRate: "8.45%",
+ tenure: "30",
  },
  {
- image: '/assets/images/banks/icici.png',
- name: 'ICICI Regular Home Loan',
- interestRate: '8.65%',
- tenure: '30',
+ image: "/assets/images/banks/icici.png",
+ name: "ICICI Regular Home Loan",
+ interestRate: "8.65%",
+ tenure: "30",
  },
  {
- image: '/assets/images/banks/bom.png',
- name: 'Bank of Maharashtra ',
- interestRate: '8.7%',
- tenure: '30',
+ image: "/assets/images/banks/bom.png",
+ name: "Bank of Maharashtra ",
+ interestRate: "8.7%",
+ tenure: "30",
  },
  {
- image: '/assets/images/banks/kotak.png',
- name: 'Kotak Home Loan',
- interestRate: '8.75%',
- tenure: '25',
+ image: "/assets/images/banks/kotak.png",
+ name: "Kotak Home Loan",
+ interestRate: "8.75%",
+ tenure: "25",
  },
  {
- image: '/assets/images/banks/axis.png',
- name: 'Axis Regular Home Loan',
- interestRate: '8.65%',
- tenure: '30',
+ image: "/assets/images/banks/axis.png",
+ name: "Axis Regular Home Loan",
+ interestRate: "8.65%",
+ tenure: "30",
  },
  {
- image: '/assets/images/banks/bajaj.png',
- name: 'Bajaj Regular Home Loan',
- interestRate: '8.5%',
- tenure: '30',
+ image: "/assets/images/banks/bajaj.png",
+ name: "Bajaj Regular Home Loan",
+ interestRate: "8.5%",
+ tenure: "30",
  },
  {
- image: '/assets/images/banks/hdfc.png',
- name: 'HDFC Regular Home Loan',
- interestRate: '8.7%',
- tenure: '30',
+ image: "/assets/images/banks/hdfc.png",
+ name: "HDFC Regular Home Loan",
+ interestRate: "8.7%",
+ tenure: "30",
  },
  ],
  maxTenure: [
  {
- image: '/assets/images/banks/bob.png',
- name: 'Bank of Baroda Regular',
- interestRate: '8.45%',
- tenure: '30',
+ image: "/assets/images/banks/bob.png",
+ name: "Bank of Baroda Regular",
+ interestRate: "8.45%",
+ tenure: "30",
  },
  {
- image: '/assets/images/banks/icici.png',
- name: 'ICICI Regular Home Loan',
- interestRate: '8.65%',
- tenure: '30',
+ image: "/assets/images/banks/icici.png",
+ name: "ICICI Regular Home Loan",
+ interestRate: "8.65%",
+ tenure: "30",
  },
  {
- image: '/assets/images/banks/bom.png',
- name: 'Bank of Maharashtra ',
- interestRate: '8.7%',
- tenure: '30',
+ image: "/assets/images/banks/bom.png",
+ name: "Bank of Maharashtra ",
+ interestRate: "8.7%",
+ tenure: "30",
  },
  {
- image: '/assets/images/banks/axis.png',
- name: 'Axis Regular Home Loan',
- interestRate: '8.65%',
- tenure: '30',
+ image: "/assets/images/banks/axis.png",
+ name: "Axis Regular Home Loan",
+ interestRate: "8.65%",
+ tenure: "30",
  },
  {
- image: '/assets/images/banks/bajaj.png',
- name: 'Bajaj Regular Home Loan',
- interestRate: '8.5%',
- tenure: '30',
+ image: "/assets/images/banks/bajaj.png",
+ name: "Bajaj Regular Home Loan",
+ interestRate: "8.5%",
+ tenure: "30",
  },
  {
- image: '/assets/images/banks/hdfc.png',
- name: 'HDFC Regular Home Loan',
- interestRate: '8.7%',
- tenure: '30',
+ image: "/assets/images/banks/hdfc.png",
+ name: "HDFC Regular Home Loan",
+ interestRate: "8.7%",
+ tenure: "30",
  },
  ],
  maxFunding: [
  {
- image: '/assets/images/banks/fb.png',
- name: 'Federal Bank Home Loan',
- interestRate: '8.5%',
- tenure: '25',
+ image: "/assets/images/banks/fb.png",
+ name: "Federal Bank Home Loan",
+ interestRate: "8.5%",
+ tenure: "25",
  },
  {
- image: '/assets/images/banks/lic.png',
- name: 'LICHFL Regular Home Loan',
- interestRate: '8.6%',
- tenure: '30',
+ image: "/assets/images/banks/lic.png",
+ name: "LICHFL Regular Home Loan",
+ interestRate: "8.6%",
+ tenure: "30",
  },
  {
- image: '/assets/images/banks/icici.png',
- name: 'ICICI Regular Home Loan',
- interestRate: '8.65%',
- tenure: '30',
+ image: "/assets/images/banks/icici.png",
+ name: "ICICI Regular Home Loan",
+ interestRate: "8.65%",
+ tenure: "30",
  },
  {
- image: '/assets/images/banks/kotak.png',
- name: 'Kotak Home Loan',
- interestRate: '8.75%',
- tenure: '25',
+ image: "/assets/images/banks/kotak.png",
+ name: "Kotak Home Loan",
+ interestRate: "8.75%",
+ tenure: "25",
  },
  {
- image: '/assets/images/banks/pnb.png',
- name: 'PNBHFL Regular Home Loan',
- interestRate: '9.2%',
- tenure: '30',
+ image: "/assets/images/banks/pnb.png",
+ name: "PNBHFL Regular Home Loan",
+ interestRate: "9.2%",
+ tenure: "30",
  },
  {
- image: '/assets/images/banks/axis.png',
- name: 'Axis Regular Home Loan',
- interestRate: '8.65%',
- tenure: '30',
+ image: "/assets/images/banks/axis.png",
+ name: "Axis Regular Home Loan",
+ interestRate: "8.65%",
+ tenure: "30",
  },
  {
- image: '/assets/images/banks/bajaj.png',
- name: 'Bajaj Regular Home Loan',
- interestRate: '8.5%',
- tenure: '30',
+ image: "/assets/images/banks/bajaj.png",
+ name: "Bajaj Regular Home Loan",
+ interestRate: "8.5%",
+ tenure: "30",
  },
  {
- image: '/assets/images/banks/lt.png',
- name: 'LnT Finance Regular Home Loan',
- interestRate: '9.3%',
- tenure: '30',
+ image: "/assets/images/banks/lt.png",
+ name: "LnT Finance Regular Home Loan",
+ interestRate: "9.3%",
+ tenure: "30",
  },
  {
- image: '/assets/images/banks/hdfc.png',
- name: 'HDFC Regular Home Loan',
- interestRate: '8.7%',
- tenure: '30',
+ image: "/assets/images/banks/hdfc.png",
+ name: "HDFC Regular Home Loan",
+ interestRate: "8.7%",
+ tenure: "30",
  },
  {
- image: '/assets/images/banks/godrej.png',
- name: 'Godrej Finance Regular',
- interestRate: '8.64%',
- tenure: '30',
+ image: "/assets/images/banks/godrej.png",
+ name: "Godrej Finance Regular",
+ interestRate: "8.64%",
+ tenure: "30",
  },
- ]
-}
+ ],
+};
 
-export const TOP_ASKED_QUESTIONS: { question: string, answerHeading: string, answer: string[], description: string }[] = [
+export const TOP_ASKED_QUESTIONS: {
+ question: string;
+ answerHeading: string;
+ answer: string[];
+ description: string;
+}[] = [
  {
- question: 'What are Home Loan eligibility criteria?',
+ question: "What are Home Loan eligibility criteria?",
  answerHeading: `Eligibility for a home loan can vary among lenders and loan schemes. However, there are some standard criteria you'll typically encounter:`,
  answer: [
- 'Nationality: Both Indian Residents and Non-Resident Indians (NRIs), as well as Person of Indian Origin (PIO), are eligible for home loans.',
+ "Nationality: Both Indian Residents and Non-Resident Indians (NRIs), as well as Person of Indian Origin (PIO), are eligible for home loans.",
  `Credit Score: It's advisable to have a credit score of 750 or higher to enhance your chances of loan approval.`,
- 'Age Range: Applicants should typically fall within the age range of 18 to 70 years.',
- 'Work Experience: Salaried individuals are generally required to have at least 2 years of work experience, while self-employed applicants should demonstrate business continuity for a minimum of 3 years.',
- 'Minimum Income: Lenders usually look for a minimum monthly income of at least Rs. 25,000 for loan applicants.',
+ "Age Range: Applicants should typically fall within the age range of 18 to 70 years.",
+ "Work Experience: Salaried individuals are generally required to have at least 2 years of work experience, while self-employed applicants should demonstrate business continuity for a minimum of 3 years.",
+ "Minimum Income: Lenders usually look for a minimum monthly income of at least Rs. 25,000 for loan applicants.",
  `Loan Amount: You can typically borrow up to 95% of the property's value, but this can vary based on the lender and the specific loan scheme.`,
  ],
- description: '',
+ description: "",
  },
  {
- question: 'How to apply for Home Loan?',
- answerHeading: 'You can check your eligibility and apply for home loan offers in three simple steps:',
+ question: "How to apply for Home Loan?",
+ answerHeading:
+ "You can check your eligibility and apply for home loan offers in three simple steps:",
  answer: [
- 'Enter Your Information: Provide your phone number or email along with details about your loan requirements. Validate your information with a one-time password (OTP).',
+ "Enter Your Information: Provide your phone number or email along with details about your loan requirements. Validate your information with a one-time password (OTP).",
  `Provide Personal Details: Enter your personal information to receive the best-suited loan offer based on your profile.`,
- `Select and Submit: Choose a loan offer that meets your needs and submit your application. Our Loan Experts will then process your application, explain the interest rates, processing fees, eligible loan amount, and schedule an appointment to collect necessary documents.`
+ `Select and Submit: Choose a loan offer that meets your needs and submit your application. Our Loan Experts will then process your application, explain the interest rates, processing fees, eligible loan amount, and schedule an appointment to collect necessary documents.`,
  ],
- description: 'Process your file explain the rates, processing fee, eligible loan amount and will schedule an appointment for document collection',
+ description:
+ "Process your file explain the rates, processing fee, eligible loan amount and will schedule an appointment for document collection",
  },
  {
- question: 'What is a Home Loan balance transfer?',
+ question: "What is a Home Loan balance transfer?",
  answerHeading: `A home loan balance transfer is when you move your existing home loan from one lender to another to get better terms, like lower interest rates or reduced fees. You apply for the transfer, the new lender pays off your old loan, and you start fresh with the new terms. It's a way to potentially save money or improve your loan features.`,
  answer: [],
- description: ''
+ description: "",
  },
  {
- question: 'Can I get a top-up loan at the time of balance transfer?',
+ question: "Can I get a top-up loan at the time of balance transfer?",
  answerHeading: `Yes, many lenders offer the option to get a top-up loan at the time of balance transfer. A top-up loan allows you to borrow additional funds on top of your existing home loan amount. Here's how it typically works:`,
  answer: [
  `Balance Transfer Application: When you apply for a balance transfer, you can also request a top-up loan if you need additional funds for purposes such as home renovation, debt consolidation, or any other financial needs.`,
  `Assessment of Eligibility: The new lender will assess your eligibility for a top-up loan based on factors such as your income, credit history, property value, and existing loan obligations.`,
  `Loan Approval: If you meet the lender's eligibility criteria, and there is sufficient equity in your property, the lender may approve your top-up loan request along with the balance transfer.`,
- `Disbursement of Funds: Once approved, the additional funds from the top-up loan are disbursed to you, typically after the balance transfer process is completed. You can then use the funds for the intended purpose.`
+ `Disbursement of Funds: Once approved, the additional funds from the top-up loan are disbursed to you, typically after the balance transfer process is completed. You can then use the funds for the intended purpose.`,
  ],
- description: '',
+ description: "",
  },
  {
- question: 'What are Home Loan Fees and charges?',
- answerHeading: 'Home loan fees and charges vary depending on the lender and the type of home loan you choose. Here are some common fees and charges associated with home loans:',
+ question: "What are Home Loan Fees and charges?",
+ answerHeading:
+ "Home loan fees and charges vary depending on the lender and the type of home loan you choose. Here are some common fees and charges associated with home loans:",
  answer: [
  `Application or Processing Fee: A one-time fee charged by the lender to process your home loan application.`,
  `Origination Fee: Similar to an application fee, this fee covers the administrative costs associated with setting up your home loan.`,
@@ -1378,21 +1425,117 @@ export const TOP_ASKED_QUESTIONS: { question: string, answerHeading: string, ans
  `Early Repayment or Prepayment Fee: Some lenders may charge a fee if you pay off your home loan early or make additional repayments beyond a certain limit.`,
  `Lenders Mortgage Insurance (LMI): If you borrow more than a certain percentage of the property's value (usually 80%), you may be required to pay LMI to protect the lender in case you default on the loan.`,
  `Exit or Discharge Fee: A fee charged when you pay off your home loan or switch to another lender.`,
- `Redraw Fee: If your home loan includes a redraw facility that allows you to access additional payments you've made, the lender may charge a fee each time you use this feature.`
+ `Redraw Fee: If your home loan includes a redraw facility that allows you to access additional payments you've made, the lender may charge a fee each time you use this feature.`,
  ],
- description: ''
+ description: "",
  },
-]
+];
 
 export const READ_MORE = [
  {
- question: 'Home Loan',
- answerHeading: '',
+ question: "Home Loan",
+ name: "home_loan",
+ answerHeading: "",
  answer: [],
  },
  {
- question: 'Compare Interest Rates',
- answerHeading: '',
+ question: "Compare Interest Rates",
+ name: "interest_rates",
+ answerHeading: "",
  answer: [],
  },
-]
+];
+
+export const BANK_INTEREST_RATE = [
+ {
+ bank: "Axis Bank",
+ interestRate: "8.85%-14.00%",
+ processingFees: "1.00%",
+ },
+ {
+ bank: "Aditya Birla Capital Home Loan",
+ interestRate: "9%-12.50%",
+ processingFees: "1%",
+ },
+ {
+ bank: "Bandhan Bank",
+ interestRate: "8.65%-13.65%",
+ processingFees: "0.25%-1.00%",
+ },
+ {
+ bank: "Bank of Baroda",
+ interestRate: "8.52%-10.60%",
+ processingFees: "0.25% -0.50%",
+ },
+ {
+ bank: "Bank of India",
+ interestRate: "7.80%-9.65%",
+ processingFees: "1.00%",
+ },
+ {
+ bank: "Bank of Maharashtra",
+ interestRate: "8.40%-10.80%",
+ processingFees: "0.25% or 25,000",
+ },
+ {
+ bank: "Canara Bank",
+ interestRate: "8.45%-11.25%",
+ processingFees: "1,500-10,000",
+ },
+ {
+ bank: "Central Bank of India",
+ interestRate: "8.45%-9.20%",
+ processingFees: "0.50% or 20,000+GST",
+ },
+ {
+ bank: "Citibank",
+ interestRate: "8.45%",
+ processingFees: "0.40%",
+ },
+ {
+ bank: "Corporation Bank",
+ interestRate: "8.60%-11.20%",
+ processingFees: "0.50%",
+ },
+ {
+ bank: "Dena Bank",
+ interestRate: "8.40%",
+ processingFees: "0.50%",
+ },
+ {
+ bank: "Federal Bank",
+ interestRate: "10.15%-10.30%",
+ processingFees: "1.00%",
+ },
+ {
+ bank: "Fullerton Bank",
+ interestRate: "9.50%",
+ processingFees: "1.00%",
+ },
+ {
+ bank: "HDFC Bank",
+ interestRate: "8.95 % -9.85%",
+ processingFees: "0.50% or INR 3,000",
+ },
+];
+
+export const READ_MORE_HOME_LOAN = [
+ {
+ icon: FormIcon,
+ heading: "Fill Details",
+ subHeading:
+ "Provide your contact details and Check Loan Amount Eligibility",
+ },
+ {
+ icon: FundingIcon,
+ heading: "Max Funding",
+ subHeading:
+ "Get upto 90& property’s value at home loan from the bank of your choice.",
+ },
+ {
+ icon: ZeroFeesIcon,
+ heading: "0% Fees",
+ subHeading:
+ "Get Home Loan Services from XTRABRICKS without paying any fees.",
+ },
+];

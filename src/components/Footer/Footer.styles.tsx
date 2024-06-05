@@ -185,7 +185,7 @@ export const FixedFooterText = styled.p`
   }
 `;
 
-export const FixedFooterForm = styled.div`
+export const FixedFooterForm = styled.form`
   width: 100%;
   display: flex;
   justify-content: center;

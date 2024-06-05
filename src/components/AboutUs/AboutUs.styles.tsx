@@ -47,7 +47,7 @@ export const LogoContainer = styled.div`
     height: 94px;
     width: 90px;
     border-radius: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 10px; 
     margin-left: 10px;
   }
 
@@ -77,7 +77,7 @@ export const AboutUsHeading = styled.h2`
   font-family: ${theme.fonts.lato};
 
   @media (max-width: 767px) {
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 6px; 
   }
 `;
@@ -118,7 +118,7 @@ export const AddressText = styled.p`
   margin-top: 125px;
 
   @media (max-width: 767px) {
-    margin-top: 8px;
+    margin-top: 10px;
     font-size: 10px;
   }
 `;

@@ -4,21 +4,27 @@ import { TESTIMONIALS } from '@/constants';
 import CustomHeading from '../CustomHeading/CustomHeading';
 import VerticalCarousel from '../VerticalCarousel/VerticalCarousel';
 import { TestimonialWrapper } from './Testimonials.styles';
+import { animated, useSpring } from 'react-spring';
+import { useInView } from 'react-intersection-observer';
 
 const Testimonials: React.FC = () => {
-  const OPTIONS: EmblaOptionsType = {};
+ const OPTIONS: EmblaOptionsType = {};
+ const AnimatedContainer = animated(TestimonialWrapper);
+ const [ref, inView] = useInView({
+ triggerOnce: true,
+ threshold: 0.3, 
+ });
+ const animation = useSpring({
+ opacity: inView ? 1 : 0,
+ transform: inView ? 'translateY(0)' : 'translateY(150px)',
+ });
 
-  return (
-    <TestimonialWrapper id={'testimonials'}>
-      <CustomHeading heading="Client Testimony" />
-      <VerticalCarousel options={OPTIONS} slides={TESTIMONIALS} />
-        {/* {TESTIMONIALS.map((item, index) => (
-          <div key={index} style={{ width: '100%', height: '284px', borderRadius: '20px', border: '1px solid black', margin: '10px 0' }}>
-            {item.name}
-          </div>
-        ))} */}
-    </TestimonialWrapper>
-  );
+ return (
+ <AnimatedContainer id={'testimonials'} style={animation} ref={ref}>
+ <CustomHeading heading="Client Testimony" />
+ <VerticalCarousel options={OPTIONS} slides={TESTIMONIALS} />
+ </AnimatedContainer>
+ );
 };
 
 export default Testimonials;

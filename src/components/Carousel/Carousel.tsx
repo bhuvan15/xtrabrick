@@ -14,7 +14,8 @@ type PropType = {
   stopOnInteraction?: boolean;
   showControls?: boolean;
   slidesToShow?: number;
-  showBottomDots?: boolean
+  showBottomDots?: boolean;
+  autoplayOnHover?: boolean;
 };
 
 const Carousel: React.FC<PropType> = (props) => {
@@ -26,10 +27,12 @@ const Carousel: React.FC<PropType> = (props) => {
     stopOnLastSnap = false,
     showControls = false,
     slidesToShow = 1,
-    showBottomDots = false
+    showBottomDots = false,
+    autoplayOnHover = false // Default to false
   } = props;
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false); // State to track hover
 
   const emblaOptions: EmblaOptionsType = {
     ...options,
@@ -39,7 +42,7 @@ const Carousel: React.FC<PropType> = (props) => {
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     emblaOptions,
-    autoPlay ? [Autoplay({ stopOnLastSnap, stopOnInteraction })] : []
+    autoPlay ? [Autoplay({ stopOnLastSnap, stopOnInteraction, delay: autoplayOnHover ? 1500 : 4000})] : []
   );
 
   useEffect(() => {
@@ -59,8 +62,24 @@ const Carousel: React.FC<PropType> = (props) => {
 
   const { prevBtnDisabled, nextBtnDisabled, onPrevButtonClick, onNextButtonClick } = usePrevNextButtons(emblaApi);
 
+  useEffect(() => {
+    const autoplayPlugin = emblaApi?.plugins()?.autoplay
+    if (!autoplayPlugin) return
+    if (autoplayOnHover && autoPlay && emblaApi && autoplayPlugin) {
+      if (isHovered) {
+        console.log(isHovered, 'isHovered')
+        autoplayPlugin.play()
+      } else {
+        autoplayPlugin.stop()
+      }
+    }
+  }, [autoPlay, emblaApi, isHovered, autoplayOnHover]);
   return (
-    <CarouselContainer className="embla">
+    <CarouselContainer
+      className="embla"
+      onMouseEnter={() => autoplayOnHover && setIsHovered(true)}
+      onMouseLeave={() => autoplayOnHover && setIsHovered(false)}
+    >
       <CarouselWrapper className="embla__viewport" ref={emblaRef}>
         <CarouselItemContainer className="embla__container" slidesToShow={slidesToShow}>
           {React.Children.map(children, (child) => (
@@ -84,7 +103,6 @@ const Carousel: React.FC<PropType> = (props) => {
       )}
       {/* Render pagination dots */}
       {showBottomDots &&  <PaginationDots totalSlides={Math.ceil(React.Children.count(children) / slidesToShow)} activeIndex={activeIndex} onClick={(index) => emblaApi?.scrollTo(index)} />}
-     
     </CarouselContainer>
   );
 };

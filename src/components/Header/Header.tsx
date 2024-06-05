@@ -14,8 +14,6 @@ import {
   DropdownItem,
   HeaderItemWrapper,
   SearchDropdownContainer,
-  SearchContainer,
-  MenuDropdownContainer,
   MenuhDropdownContainer,
   MenuDropdownItem,
 } from "./Header.styles";
@@ -141,7 +139,7 @@ const Header: React.FC<{ activeTab?: string }> = ({ activeTab }) => {
             }
           }}
         >
-          <PhoneIcon height={21} width={21} />
+          <PhoneIcon className="phoneIcon" height={21} width={23} />
           <PhoneNumberText className="phoneText">9850004775</PhoneNumberText>
         </PhoneNumberWrapper>
         <MenuIconWrapper onClick={() => setIsMenuOpen(!isMenuOpen)}>

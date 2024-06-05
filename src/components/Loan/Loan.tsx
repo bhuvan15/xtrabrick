@@ -1,237 +1,340 @@
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import {
-  BANKING_PARTNERS_LABEL,
-  BANKS_DATA,
-  LOAN_SERVICES,
-  LOAN_SERVICES_NAVIGATOR,
-  TOP_ASKED_QUESTIONS,
-  READ_MORE,
-} from '@/constants';
-import { theme } from '@/constants/basetheme';
-import CustomHeading from '../CustomHeading/CustomHeading';
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
+ BANKING_PARTNERS_LABEL,
+ BANKS_DATA,
+ LOAN_SERVICES,
+ LOAN_SERVICES_NAVIGATOR,
+ TOP_ASKED_QUESTIONS,
+ READ_MORE,
+} from "@/constants";
+import { theme } from "@/constants/basetheme";
+import CustomHeading from "../CustomHeading/CustomHeading";
+import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
 import {
-  BannerWrapper,
-  NavigatorLink,
-  NavigatorWrapper,
-} from '../Properties/Properties.styles';
-import VaastuDetailsContainer from '../Vaastu/VaastuDetailsContainer';
+ BannerWrapper,
+ NavigatorLink,
+ NavigatorWrapper,
+} from "../Properties/Properties.styles";
+import VaastuDetailsContainer from "../Vaastu/VaastuDetailsContainer";
 import {
-  Container,
-  BankingPartnersWrapper,
-  PartnersFilter,
-  FilterItem,
-  FilteredData,
-  BankCard,
-  CalculatorWrapper,
-  CalculatorContainer,
-  CalculatorHeader,
-  CalculatorText,
-  CalculatorInputGroup,
-  CalculatorInput,
-  SummaryContainer,
-  SummaryGrid,
-  QuestionsWrapper,
-  QuestionCard,
-  ReadMoreCard,
-  ModalOverlay,
-  ModalContent,
-  CloseButton
-} from './Loan.styles';
+ Container,
+ BankingPartnersWrapper,
+ PartnersFilter,
+ FilterItem,
+ FilteredData,
+ BankCard,
+ CalculatorWrapper,
+ CalculatorContainer,
+ CalculatorHeader,
+ CalculatorText,
+ CalculatorInputGroup,
+ CalculatorInput,
+ SummaryContainer,
+ SummaryGrid,
+ QuestionsWrapper,
+ QuestionCard,
+ ReadMoreCard,
+ ModalOverlay,
+ ModalContent,
+ CloseButton,
+} from "./Loan.styles";
+import HomeLoanModal from "./HomeLoanModal";
+import InterestRateModal from "./InterestRateModal";
 
 const Loan: React.FC = () => {
-  const [activeFilter, setActiveFilter] = useState(BANKING_PARTNERS_LABEL[0]);
-  const [formData, setFormData] = useState({
-    amount: '3000000',
-    interestRate: '8.4',
-    tenure: '20',
-  });
-  const [emi, setEmi] = useState(0);
-  const [totalInterest, setTotalInterest] = useState(0);
-  const [modalData, setModalData] = useState<{ question: string, answerHeading: string, answer: string[], description: string } | null>(null);
+ const [activeFilter, setActiveFilter] = useState(BANKING_PARTNERS_LABEL[0]);
+ const [formData, setFormData] = useState({
+ amount: "3000000",
+ interestRate: "8.4",
+ tenure: "20",
+ });
+ const [emi, setEmi] = useState(0);
+ const [totalInterest, setTotalInterest] = useState(0);
+ const [modalData, setModalData] = useState<{
+ question: string;
+ answerHeading: string;
+ answer: string[];
+ description: string;
+ } | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+ const { name, value } = e.target;
+ setFormData({ ...formData, [name]: value });
+ };
 
-  const handleQuestionClick = (questionData: any) => {
-    setModalData(questionData);
-  };
+ const handleQuestionClick = (questionData: any) => {
+ setModalData(questionData);
+ };
 
-  const handleCloseModal = () => {
-    setModalData(null);
-  };
+ const handleCloseModal = () => {
+ setReadMoreModal(null);
+ setModalData(null);
+ };
+ const [readMoreModal, setReadMoreModal] = useState<string | null>();
 
-  useEffect(() => {
-    const calculateEMI = () => {
-      const amount = parseFloat(formData.amount);
-      const interestRate = parseFloat(formData.interestRate);
-      const tenureYears = parseFloat(formData.tenure);
+ const activeReadMoreComponent = (name: string) => {
+ if (name === "home_loan") {
+ return (
+ <HomeLoanModal
+ closeModal={() => {
+ setReadMoreModal(null);
+ }}
+ />
+ );
+ } else {
+ return (
+ <InterestRateModal
+ closeModal={() => {
+ setReadMoreModal(null);
+ }}
+ />
+ );
+ }
+ };
+ useEffect(() => {
+ const calculateEMI = () => {
+ const amount = parseFloat(formData.amount);
+ const interestRate = parseFloat(formData.interestRate);
+ const tenureYears = parseFloat(formData.tenure);
 
-      if (!isNaN(amount) && !isNaN(interestRate) && !isNaN(tenureYears) && amount > 0 && interestRate > 0 && tenureYears > 0) {
-        const tenureMonths = tenureYears * 12;
-        const monthlyInterestRate = interestRate / (12 * 100);
-        const emi = (amount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, tenureMonths)) / (Math.pow(1 + monthlyInterestRate, tenureMonths) - 1);
-        const totalInterest = (emi * tenureMonths) - amount;
+ if (
+ !isNaN(amount) &&
+ !isNaN(interestRate) &&
+ !isNaN(tenureYears) &&
+ amount > 0 &&
+ interestRate > 0 &&
+ tenureYears > 0
+ ) {
+ const tenureMonths = tenureYears * 12;
+ const monthlyInterestRate = interestRate / (12 * 100);
+ const emi =
+ (amount *
+ monthlyInterestRate *
+ Math.pow(1 + monthlyInterestRate, tenureMonths)) /
+ (Math.pow(1 + monthlyInterestRate, tenureMonths) - 1);
+ const totalInterest = emi * tenureMonths - amount;
 
-        setEmi(emi);
-        setTotalInterest(totalInterest);
-      } else {
-        setEmi(0);
-        setTotalInterest(0);
-      }
-    };
+ setEmi(emi);
+ setTotalInterest(totalInterest);
+ } else {
+ setEmi(0);
+ setTotalInterest(0);
+ }
+ };
 
-    calculateEMI();
-  }, [formData]);
+ calculateEMI();
+ }, [formData]);
 
-  return (
-    <Container>
-      <Header activeTab="Carrers" />
-      <BannerWrapper>
-        <Image
-          src="/assets/images/loanPage.png"
-          alt="Loan Services"
-          layout="responsive"
-          objectFit="cover"
-          width={1920}
-          height={1080}
-          loading="eager"
-        />
-        <NavigatorWrapper>
-          {LOAN_SERVICES_NAVIGATOR.map((item, index) => (
-            <Link key={index} href={item.link} scroll={false} passHref>
-              <NavigatorLink>{item.name}</NavigatorLink>
-            </Link>
-          ))}
-        </NavigatorWrapper>
-      </BannerWrapper>
+ return (
+ <Container>
+ <Header activeTab="Loan Services" />
+ <BannerWrapper>
+ <Image
+ src="/assets/images/loanPage.png"
+ alt="Loan Services"
+ layout="responsive"
+ objectFit="cover"
+ width={1920}
+ height={1080}
+ loading="eager"
+ />
+ <NavigatorWrapper>
+ {LOAN_SERVICES_NAVIGATOR.map((item, index) => (
+ <Link key={index} href={item.link} scroll={false} passHref>
+ <NavigatorLink>{item.name}</NavigatorLink>
+ </Link>
+ ))}
+ </NavigatorWrapper>
+ </BannerWrapper>
 
-      <CustomHeading heading="We Provide Loan Services" id={'loanServices'}/>
-      <VaastuDetailsContainer data={LOAN_SERVICES} columns={3} />
+ <CustomHeading heading="We Provide Loan Services" id={"loanServices"} />
+ <VaastuDetailsContainer data={LOAN_SERVICES} columns={3} />
 
-      <CustomHeading heading="Our Banking Partners" id={'bankingPartners'}/>
-      <BankingPartnersWrapper >
-        <PartnersFilter>
-          {BANKING_PARTNERS_LABEL?.map((item, index) => (
-            <FilterItem
-              key={index}
-              active={activeFilter.name === item.name}
-              onClick={() => setActiveFilter(item)}
-            >
-              <p>{item?.name}</p>
-            </FilterItem>
-          ))}
-        </PartnersFilter>
-        <FilteredData>
-          {BANKS_DATA?.[activeFilter?.value]?.map((item, index) => (
-            <BankCard key={index}>
-              <Image src={item?.image} alt={item?.name} height={50} width={127} loading="eager" />
-              <div>
-                <p style={{ fontFamily: theme.fonts.lato, fontSize: 16, fontWeight: 700, marginBottom: 5 }}>
-                  {item?.name}
-                </p>
-                <p style={{ fontFamily: theme.fonts.lato, fontSize: 14, fontWeight: 400, marginBottom: 5 }}>
-                  Interest Rate: {item?.interestRate} onwards
-                </p>
-                <p style={{ fontFamily: theme.fonts.lato, fontSize: 14, fontWeight: 400, marginBottom: 5 }}>
-                  Max Tenure: {item?.tenure} Years
-                </p>
-              </div>
-            </BankCard>
-          ))}
-        </FilteredData>
-      </BankingPartnersWrapper>
+ <CustomHeading heading="Our Banking Partners" id={"bankingPartners"} />
+ <BankingPartnersWrapper>
+ <PartnersFilter>
+ {BANKING_PARTNERS_LABEL?.map((item, index) => (
+ <FilterItem
+ key={index}
+ active={activeFilter.name === item.name}
+ onClick={() => setActiveFilter(item)}
+ >
+ <p>{item?.name}</p>
+ </FilterItem>
+ ))}
+ </PartnersFilter>
+ <FilteredData>
+ {BANKS_DATA?.[activeFilter?.value]?.map((item, index) => (
+ <BankCard key={index}>
+ <Image
+ src={item?.image}
+ alt={item?.name}
+ height={50}
+ width={127}
+ loading="eager"
+ />
+ <div>
+ <p
+ style={{
+ fontFamily: theme.fonts.lato,
+ fontSize: 16,
+ fontWeight: 700,
+ marginBottom: 5,
+ }}
+ >
+ {item?.name}
+ </p>
+ <p
+ style={{
+ fontFamily: theme.fonts.lato,
+ fontSize: 14,
+ fontWeight: 400,
+ marginBottom: 5,
+ }}
+ >
+ Interest Rate: {item?.interestRate} onwards
+ </p>
+ <p
+ style={{
+ fontFamily: theme.fonts.lato,
+ fontSize: 14,
+ fontWeight: 400,
+ marginBottom: 5,
+ }}
+ >
+ Max Tenure: {item?.tenure} Years
+ </p>
+ </div>
+ </BankCard>
+ ))}
+ </FilteredData>
+ </BankingPartnersWrapper>
 
-      <CustomHeading heading="Finance Calculator"  id='financialCalculator'/>
-      <CalculatorWrapper>
-        <CalculatorContainer>
-          <CalculatorHeader>
-            <p>EMI Calculator</p>
-          </CalculatorHeader>
-          <CalculatorText>
-            Calculate EMI with our in-built calculator, consult with us for better options for home loans and documentation help!
-          </CalculatorText>
-          <CalculatorText>Consult: +91 9850004775</CalculatorText>
-          <CalculatorInputGroup>
-            <CalculatorInput>
-              <p>Loan Amount</p>
-              <input type="text" name="amount" placeholder="Loan Amount" value={formData.amount} onChange={handleChange} />
-            </CalculatorInput>
-            <CalculatorInput>
-              <p>Rate of Interest (P.A.)</p>
-              <input type="text" name="interestRate" placeholder="Interest Rate" value={formData.interestRate} onChange={handleChange} />
-            </CalculatorInput>
-          </CalculatorInputGroup>
-          <CalculatorInput width='100%'>
-            <p>Loan Tenure (Years)</p>
-            <input type="text" name="tenure" placeholder="Loan Tenure" value={formData.tenure} onChange={handleChange} />
-          </CalculatorInput>
-          <SummaryContainer>
-            <p>Summary</p>
-            <SummaryGrid>
-              <div>
-                <p>Monthly EMI</p>
-                <p>₹ {emi.toFixed(2)}</p>
-              </div>
-              <div>
-                <p>Total Interest</p>
-                <p>₹ {totalInterest.toFixed(2)}</p>
-              </div>
-              <div>
-                <p>Principle Amount</p>
-                <p>₹ {parseFloat(formData.amount) > 0 ? parseFloat(formData.amount).toFixed(2) : '0.00'}</p>
-              </div>
-              <div>
-                <p>Total Payment</p>
-                <p>₹ {(parseFloat(formData.amount) + totalInterest).toFixed(2)}</p>
-              </div>
-            </SummaryGrid>
-          </SummaryContainer>
-        </CalculatorContainer>
-        <Image src="/assets/images/emiCalculator.png" alt="emi calculator" height={344} width={519} loading="eager" />
-      </CalculatorWrapper>
+ <CustomHeading heading="Finance Calculator" id="financialCalculator" />
+ <CalculatorWrapper>
+ <CalculatorContainer>
+ <CalculatorHeader>
+ <p>EMI Calculator</p>
+ </CalculatorHeader>
+ <CalculatorText>
+ Calculate EMI with our in-built calculator, consult with us for
+ better options for home loans and documentation help!
+ </CalculatorText>
+ <CalculatorText>Consult: +91 9850004775</CalculatorText>
+ <CalculatorInputGroup>
+ <CalculatorInput>
+ <p>Loan Amount</p>
+ <input
+ type="text"
+ name="amount"
+ placeholder="Loan Amount"
+ value={formData.amount}
+ onChange={handleChange}
+ />
+ </CalculatorInput>
+ <CalculatorInput>
+ <p>Rate of Interest (P.A.)</p>
+ <input
+ type="text"
+ name="interestRate"
+ placeholder="Interest Rate"
+ value={formData.interestRate}
+ onChange={handleChange}
+ />
+ </CalculatorInput>
+ </CalculatorInputGroup>
+ <CalculatorInput width="100%">
+ <p>Loan Tenure (Years)</p>
+ <input
+ type="text"
+ name="tenure"
+ placeholder="Loan Tenure"
+ value={formData.tenure}
+ onChange={handleChange}
+ />
+ </CalculatorInput>
+ <SummaryContainer>
+ <p>Summary</p>
+ <SummaryGrid>
+ <div>
+ <p>Monthly EMI</p>
+ <p>₹ {emi.toFixed(2)}</p>
+ </div>
+ <div>
+ <p>Total Interest</p>
+ <p>₹ {totalInterest.toFixed(2)}</p>
+ </div>
+ <div>
+ <p>Principle Amount</p>
+ <p>
+ ₹{" "}
+ {parseFloat(formData.amount) > 0
+ ? parseFloat(formData.amount).toFixed(2)
+ : "0.00"}
+ </p>
+ </div>
+ <div>
+ <p>Total Payment</p>
+ <p>
+ ₹ {(parseFloat(formData.amount) + totalInterest).toFixed(2)}
+ </p>
+ </div>
+ </SummaryGrid>
+ </SummaryContainer>
+ </CalculatorContainer>
+ <Image
+ src="/assets/images/emiCalculator.png"
+ alt="emi calculator"
+ height={344}
+ width={519}
+ loading="eager"
+ />
+ </CalculatorWrapper>
 
-      <CustomHeading heading="Top Asked Questions" id={'faqs'}/>
-      <QuestionsWrapper>
-        {TOP_ASKED_QUESTIONS?.map((item, index) => (
-          <QuestionCard key={index} onClick={() => handleQuestionClick(item)}>
-            <p>{item.question}</p>
-          </QuestionCard>
-        ))}
-      </QuestionsWrapper>
+ <CustomHeading heading="Top Asked Questions" id={"faqs"} />
+ <QuestionsWrapper>
+ {TOP_ASKED_QUESTIONS?.map((item, index) => (
+ <QuestionCard key={index} onClick={() => handleQuestionClick(item)}>
+ <p>{item.question}</p>
+ </QuestionCard>
+ ))}
+ </QuestionsWrapper>
 
-      {modalData && (
-        <ModalOverlay onClick={handleCloseModal}>
-          <ModalContent onClick={e => e.stopPropagation()}>
-            <CloseButton onClick={handleCloseModal}>×</CloseButton>
-            <h3>{modalData.answerHeading}</h3>
-            <ol>
-              {modalData.answer.map((ans, idx) => (
-                <li key={idx}>{ans}</li>
-              ))}
-            </ol>
-            <p>{modalData.description}</p>
-          </ModalContent>
-        </ModalOverlay>
-      )}
+ {modalData && (
+ <ModalOverlay onClick={handleCloseModal}>
+ <ModalContent onClick={(e: any) => e.stopPropagation()}>
+ <CloseButton onClick={handleCloseModal}>×</CloseButton>
+ <h3>{modalData.answerHeading}</h3>
+ <ol>
+ {modalData.answer.map((ans, idx) => (
+ <li key={idx}>{ans}</li>
+ ))}
+ </ol>
+ <p>{modalData.description}</p>
+ </ModalContent>
+ </ModalOverlay>
+ )}
 
-      <CustomHeading heading="Read More" />
-      <QuestionsWrapper>
-        {READ_MORE?.map((item, index) => (
-          <ReadMoreCard key={index}>
-            <p>{item.question}</p>
-          </ReadMoreCard>
-        ))}
-      </QuestionsWrapper>
-
-      <Footer />
-    </Container>
-  );
+ <CustomHeading heading="Read More" />
+ <QuestionsWrapper>
+ {READ_MORE?.map((item, index) => (
+ <ReadMoreCard
+ key={index}
+ onClick={() => {
+ setReadMoreModal(item.name);
+ }}
+ >
+ <p>{item.question}</p>
+ </ReadMoreCard>
+ ))}
+ </QuestionsWrapper>
+ {readMoreModal && activeReadMoreComponent(readMoreModal)}
+ <Footer />
+ </Container>
+ );
 };
 
 export default Loan;

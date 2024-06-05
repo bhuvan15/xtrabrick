@@ -120,6 +120,7 @@ export const Button = styled.button`
   outline: none;
   padding: 12px 30px;
   color: ${theme.colors.white};
+  cursor: pointer;
 `;
 
 export const RightWrapper = styled.div`

@@ -1,10 +1,30 @@
 import React from "react";
 import Image from "next/image";
-import { AboutUsContainer, LogoContainer, RightWrapper, AboutUsHeading, XtraBrickRealtors, ExperienceText, AddressText, BackgroundImage } from "./AboutUs.styles";
+import {
+  AboutUsContainer,
+  LogoContainer,
+  RightWrapper,
+  AboutUsHeading,
+  XtraBrickRealtors,
+  ExperienceText,
+  AddressText,
+  BackgroundImage,
+} from "./AboutUs.styles";
+import { animated, useSpring } from "react-spring";
+import { useInView } from "react-intersection-observer";
 
 const AboutUs: React.FC = () => {
+  const AnimatedContainer = animated(AboutUsContainer);
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
+  const animation = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? "translateY(0)" : "translateY(150px)",
+  });
   return (
-    <AboutUsContainer id="aboutUs">
+    <AnimatedContainer id="aboutUs" style={animation} ref={ref}>
       <BackgroundImage>
         <Image
           src="/assets/images/aboutUsBg.png"
@@ -28,16 +48,20 @@ const AboutUs: React.FC = () => {
       <RightWrapper>
         <div>
           <AboutUsHeading>About Us</AboutUsHeading>
-          <XtraBrickRealtors >XTRABRICK REALTORS</XtraBrickRealtors>
-          <ExperienceText color="#20B2FF" isBold>20 +</ExperienceText>
-          <ExperienceText color="#ffffff" isBold>Years of Experience</ExperienceText>
+          <XtraBrickRealtors>XTRABRICK REALTORS</XtraBrickRealtors>
+          <ExperienceText color="#20B2FF" isBold>
+            20 +
+          </ExperienceText>
+          <ExperienceText color="#ffffff" isBold>
+            Years of Experience
+          </ExperienceText>
         </div>
         <AddressText>
-          Office No. 45, Vision One Mall, Bhumkar Chowk, <br />Wakad - 411033,
-          Pune, Maharashtra, India
+          Office No. 45, Vision One Mall, Bhumkar Chowk, <br />
+          Wakad - 411033, Pune, Maharashtra, India
         </AddressText>
       </RightWrapper>
-    </AboutUsContainer>
+    </AnimatedContainer>
   );
 };
 
