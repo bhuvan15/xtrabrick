@@ -20,7 +20,7 @@ const Career = () => {
         marginTop: '89px'
       }}
     >
-      <Header activeTab="Carrers"/>
+      <Header activeTab="Careers"/>
       <div
         style={{
           width: "100%",

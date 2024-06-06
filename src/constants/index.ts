@@ -93,7 +93,7 @@ export const HEADER_ITEMS = [
     ],
   },
   {
-    name: "Carrers",
+    name: "Careers",
     link: "/careers",
   },
 ];

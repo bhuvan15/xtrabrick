@@ -1,10 +1,10 @@
 import React from "react";
 import Career from "@/components/Career/Career";
 
-const Carrers = () => {
+const Careers = () => {
  return (
  <Career />
  );
 };
 
-export default Carrers;
+export default Careers;
