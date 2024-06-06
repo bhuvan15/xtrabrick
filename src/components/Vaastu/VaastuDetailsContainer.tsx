@@ -1,83 +1,56 @@
 import React from "react";
-import { theme } from "@/constants/basetheme";
-const VaastuDetailsContainer: React.FC<{ data: any[], columns?: number }> = ({ data, columns = 2 }) => {
-  return (
-    <div
-      style={{
-        padding: columns === 3 ? "30px 45px 0px 45px" : '30px 45px',
-        display: "grid",
-        gridTemplateColumns: `repeat(${columns}, 1fr)`,
-        gridTemplateRows: "repeat(2, auto)",
-        gap: "50px",
-        borderRadius: "20px",
-        border: "1px solid black",
-        width: "92%",
-        margin: "25px auto",
-      }}
-    >
-      {data?.map((item, index) => {
-        return (
-          <div
-            key={index}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              marginBottom: columns=== 3 ? 0  : 20,
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
-              <item.icon />
-              <p
-                style={{
-                  marginLeft: "45px",
-                  fontFamily: theme.fonts.lato,
-                  fontWeight: 700,
-                  fontSize: 20,
-                }}
-              >
+import { useInView } from "react-intersection-observer";
+import { animated, useSpring } from "react-spring";
+import {
+  Container,
+  ItemContainer,
+  ItemHeader,
+  ItemTitle,
+  ItemDescription,
+  InfoList,
+  InfoItem,
+} from "./Vaastu.styles";
 
-                {item?.title}
-              </p>
-            </div>
-            <p
-              style={{
-                fontFamily: theme.fonts.lato,
-                fontWeight: 400,
-                fontSize: 18,
-                width: "75%",
-                marginTop: 10,
-              }}
-            >
-              {item?.description}
-            </p>
-            <ul style={{marginTop: 4}}>
-              {item?.info?.map((info: string, i: number) => {
-                return (
-                  <li
-                    key={i}
-                    style={{
-                      fontFamily: theme.fonts.lato,
-                      fontWeight: 400,
-                      fontSize: 18,
-                      marginLeft: 17,
-                      marginTop: 2,
-                    }}
-                  >
-                    {info}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        );
-      })}
-    </div>
+interface VaastuDetailsContainerProps {
+  data: {
+    icon: React.ComponentType;
+    title: string;
+    description: string;
+    info?: string[];
+  }[];
+  columns?: number;
+}
+
+const VaastuDetailsContainer: React.FC<VaastuDetailsContainerProps> = ({
+  data,
+  columns = 2,
+}) => {
+  const AnimatedContainer = animated(Container);
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
+  const animation = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? "translateY(0)" : "translateY(150px)",
+  });
+  return (
+    <AnimatedContainer columns={columns} ref={ref} style={animation}>
+      {data?.map((item, index) => (
+        <ItemContainer key={index} columns={columns}>
+          <ItemHeader>
+            <item.icon />
+            <ItemTitle>{item?.title}</ItemTitle>
+          </ItemHeader>
+          <ItemDescription>{item?.description}</ItemDescription>
+          <InfoList>
+            {item?.info?.map((info, i) => (
+              <InfoItem key={i}>{info}</InfoItem>
+            ))}
+          </InfoList>
+        </ItemContainer>
+      ))}
+    </AnimatedContainer>
   );
 };
 

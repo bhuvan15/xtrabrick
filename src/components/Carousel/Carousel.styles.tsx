@@ -1,10 +1,9 @@
-import styled from "styled-components"; 
+import styled from "styled-components";
 
 export const CarouselContainer = styled.div`
   width: 100%;
   overflow: hidden;
   position: relative;
-
 `;
 
 export const CarouselWrapper = styled.div`
@@ -16,21 +15,26 @@ export const CarouselItemContainer = styled.div<{ slidesToShow: number }>`
   display: flex;
   flex-direction: row;
   width: 100%;
-  padding: ${({ slidesToShow }) => (slidesToShow > 1 ? '0 10px' : '0')}; // Add padding if slidesToShow > 1
-  justify-content: ${({ slidesToShow }) => (slidesToShow > 1 ? 'center' : 'flex-start')}; // Center slides if slidesToShow > 1
+  padding: ${({ slidesToShow }) =>
+    slidesToShow > 1 ? "0 10px" : "0"}; // Add padding if slidesToShow > 1
+  justify-content: ${({ slidesToShow }) =>
+    slidesToShow > 1
+      ? "center"
+      : "flex-start"}; // Center slides if slidesToShow > 1
 `;
 
 export const CarouselItem = styled.div<{ slidesToShow: number }>`
   position: relative;
-  flex: ${({ slidesToShow }) => (slidesToShow > 1 ? `0 0 calc(100% / ${slidesToShow} - 10px)` : '0 0 100%')}; // Width of slide minus margin if slidesToShow > 1, otherwise full width
+  flex: ${({ slidesToShow }) =>
+    slidesToShow > 1 ? `0 0 calc(100% / ${slidesToShow} - 10px)` : "0 0 100%"};
   box-sizing: border-box;
-  margin: ${({ slidesToShow }) => (slidesToShow > 1 ? '0 5px' : '0')}; // Half of the 10px total margin (5px on each side) if slidesToShow > 1
+  margin: ${({ slidesToShow }) => (slidesToShow > 1 ? "0 5px" : "0")};
 `;
 
 export const ButtonWrapper = styled.div`
   display: flex;
   align-items: center;
-  position: 'relative';
+  position: "relative";
 
   .embla__button {
     height: 30px;
@@ -46,14 +50,24 @@ export const ButtonWrapper = styled.div`
     position: absolute;
     left: 30px;
     top: 45%;
+
+    @media (max-width: 767px) {
+      top: 25%;
+      left: 5px;
+    }
   }
   .embla__button--next {
     position: absolute;
     right: 30px;
     top: 45%;
+
+    @media (max-width: 767px) {
+      top: 25%;
+      right: 5px;
+    }
   }
 `;
 
-export const ButtonContainer = styled.div `
-  position: 'relative',
-`
+export const ButtonContainer = styled.div`
+  position: "relative";
+`;
